@@ -1,7 +1,7 @@
 # Lox-Interpreter
 A lox interpreter based on Java
 
-# Basic Lox Grammer
+# Basic Lox Grammar
 ```
   # 定义变量
   var a; | var a = 1;
