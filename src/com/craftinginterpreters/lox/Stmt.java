@@ -27,7 +27,7 @@ abstract class Stmt {
         R visitBlockStmt(Block stmt);
         // R visitClassStmt(Class stmt);
         R visitExpressionStmt(Expression stmt);
-        // R visitFunctionStmt(Function stmt);
+        R visitFunctionStmt(Function stmt);
         R visitIfStmt(If stmt);
         R visitPrintStmt(Print stmt);
         // R visitReturnStmt(Return stmt);
@@ -127,6 +127,22 @@ abstract class Stmt {
     }
     //< stmt-while
 
+    //> stmt-function
+    static class Function extends Stmt {
+        Function(Token name, List<Token> parameters, List<Stmt> body) {
+            this.name = name;
+            this.parameters = parameters;
+            this.body = body;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitFunctionStmt(this);
+        }
+
+        final Token name;
+        final List<Token> parameters;
+        final List<Stmt> body;
+    }
 
 
     abstract <R> R accept(Visitor<R> visitor);
