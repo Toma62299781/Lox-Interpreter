@@ -16,10 +16,21 @@ A lox interpreter based on Java
     a = a + 1;
   }
   
+  # if 语句
+  # This should print "a >= 20"
+  a = 30;
+  
+  if ( a < 20 ) {
+      print "a" + " < 20.";
+  } else {
+      print "a" + " >= 20";
+  }
+  
   # function
   fun add(a, b) {
     print a + b;
   }
+  
   
 ```
 
