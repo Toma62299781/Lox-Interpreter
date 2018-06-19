@@ -126,7 +126,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     void executeBlock(List<Stmt> statements, Environment environment) {
-        Environment previous = this.environment;    // 保存当前作用域中的变量
+        Environment previous = this.environment;    // 保存包含作用域中的变量
 
         try {
             this.environment = environment; // 切换到当前作用域
