@@ -31,6 +31,32 @@ A lox interpreter based on Java
     print a + b;
   }
   
+  # class
+  class A {
+    method() {
+        print "A method";
+    }
+  }
+  
+  class B < A {
+    method() {
+        print "B method";
+    }
+    
+    test() {
+        super.method();
+    }
+  }
+  
+  class C < B {}
+  
+  C().test();
+  
+  // 给一个类添加成员变量
+  var a = A();
+  a.name = "A class";   // 直接 class.成员变量 = xxx即可
+  print a.name;
+  
   
 ```
 
