@@ -25,12 +25,12 @@ import java.util.List;
 abstract class Stmt {
     interface Visitor<R> {
         R visitBlockStmt(Block stmt);
-        // R visitClassStmt(Class stmt);
+        R visitClassStmt(Class stmt);
         R visitExpressionStmt(Expression stmt);
         R visitFunctionStmt(Function stmt);
         R visitIfStmt(If stmt);
         R visitPrintStmt(Print stmt);
-        // R visitReturnStmt(Return stmt);
+        R visitReturnStmt(Return stmt);
         R visitVarStmt(Var stmt);
         R visitWhileStmt(While stmt);
     }
@@ -142,6 +142,42 @@ abstract class Stmt {
         final Token name;
         final List<Token> parameters;
         final List<Stmt> body;
+    }
+    //< stmt-function
+
+    //>stmt-return
+    static class Return extends Stmt {
+        Return(Token keyword, Expr value) {
+            this.keyword = keyword;
+            this.value = value;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitReturnStmt(this);
+        }
+
+        final Token keyword;
+        final Expr value;
+    }
+    //< stmt-return
+
+    //> stmt-class
+    static class Class extends Stmt {
+        Class(Token name,
+              Expr.Variable superclass,
+              List<Stmt.Function> methods) {
+            this.name = name;
+            this.superclass = superclass;
+            this.methods = methods;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitClassStmt(this);
+        }
+
+        final Token name;
+        final Expr.Variable superclass;
+        final List<Stmt.Function> methods;
     }
 
 
